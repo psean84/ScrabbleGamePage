@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:ScrabbleGamePage"
+             x:Class="ScrabbleGamePage.MainPage" BackgroundColor="Gray">
+    <ContentView BackgroundColor="Gray" HorizontalOptions="Center" >
+        <Grid HorizontalOptions="FillAndExpand" x:Name="grdTopGrid" VerticalOptions="FillAndExpand">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="20*"></RowDefinition>
+                <RowDefinition Height="2*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <StackLayout Grid.Row="0" Grid.Column="1" x:Name="scoreBoard">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                <Label x:Name="pName" Grid.Row="0" Grid.Column="0" FontSize="Medium"  FontAttributes="Bold" TextColor="Blue"></Label>
+                    <Label x:Name="pScore" Grid.Row="0" Grid.Column="1" FontSize="Medium"  FontAttributes="Bold" TextColor="Blue" HorizontalTextAlignment="Start"></Label>
+                    <Label x:Name="cName" Grid.Row="0" Grid.Column="2" FontSize="Medium"  FontAttributes="Bold" TextColor="Red"></Label>
+                    <Label x:Name="cScore" Grid.Row="0" Grid.Column="3" FontSize="Medium" FontAttributes="Bold" TextColor="Red" HorizontalTextAlignment="Start"></Label>
+                    <Label Grid.Row="0" Grid.Column="4" FontSize="Medium"  FontAttributes="Bold" TextColor="Black" Text="Remaining Tiles"></Label>
+                    <Label x:Name="lblRemainingTiles" Grid.Row="0" Grid.Column="5" FontSize="Medium" FontAttributes="Bold" TextColor="Red" HorizontalTextAlignment="Start"></Label>
+                </Grid>
+            </StackLayout>
+            
+            <StackLayout Grid.Row="1" Grid.Column="1" x:Name="cvBoard" Margin="0,0,8,0">
+                <ScrollView x:Name="svBoard" IsClippedToBounds="True" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" >
+                    <local:ScrabbleBoard x:Name="Board" BackgroundColor="Gray" SizeChanged="Board_SizeChanged" />
+                </ScrollView>
+            </StackLayout>
+            
+            <StackLayout  Grid.Row="2" Grid.Column="1" >
+            <Grid HorizontalOptions="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0" /> 
+                    <ColumnDefinition Width="7*"  />
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="0" />
+                </Grid.ColumnDefinitions>
+
+                    <StackLayout x:Name="stPlayerGrid" Grid.Column="1" Grid.Row="0" HorizontalOptions="Start" BackgroundColor="Gray">
+                </StackLayout>
+                    <Frame Margin="1" Padding="1" Grid.Column="2" Grid.Row="0" IsVisible="True" x:Name="frSubmit">
+                        <Image x:Name="imgSubmit" Source="Images/submit.png" BackgroundColor="Transparent"  Aspect="AspectFit" />
+                    </Frame>
+                    <Frame Margin="1" Padding="1" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="0" BackgroundColor="Black" Opacity="0.8" IsVisible="False" x:Name="frWait">
+                        <ActivityIndicator  x:Name="actinWait" Color="Aqua" IsRunning="True" />
+                    </Frame>
+            </Grid>
+            </StackLayout>
+            <Frame Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" Opacity="0.9" Margin="20" Padding="4" HorizontalOptions="FillAndExpand" VerticalOptions="Start" IsVisible="False" x:Name="frMessagePlaceHolder" BackgroundColor="White" >
+            </Frame>
+            
+            <Frame Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" Opacity="0.9" Margin="20" Padding="20" HasShadow="True" HorizontalOptions="FillAndExpand" VerticalOptions="Center" IsVisible="False" x:Name="frGameFinished" BackgroundColor="White" >
+                <Label HorizontalTextAlignment="Center" HorizontalOptions="FillAndExpand" FontSize="Large" x:Name="lblFinishMessage" />
+            </Frame>
+        </Grid>
+    </ContentView>
+</ContentPage>
